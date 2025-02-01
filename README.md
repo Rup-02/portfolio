@@ -1,4 +1,4 @@
-# portfolio
+# portfolio website
 Crafting a resume portfolio
 
 I’m beginning the process of crafting an HTML,CSS,JS snippet. This snippet will present the user's GitHub-hosted resume in an aesthetically pleasing manner, incorporating sections for personal information, resume details, and additional insights such as course specifics.
