@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rupayan Saha - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        body {
+    cursor: default;
+}
+
+a, button, .card, .social-icon, .nav-link {
+    cursor: pointer;
+}
+
+.project-card:hover, 
+.certification-card:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover; /* Ensures video covers the entire background */
+        }
+
+        /* Dark Overlay for Better Text Visibility */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+            z-index: 0;
+        }
+
+        /* Content Styling */
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar {
+            background-color: rgba(44, 62, 80, 0.8) !important; /* Semi-transparent navbar */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .social-links {
+    margin: 20px 0;
+}
+
+.social-link {
+    font-size: 24px;
+    color: #0077b5;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: #00a0dc;
+}
+
+.footer {
+    padding: 30px 0;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+.social-section {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+
+
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.social-icon {
+    color: #0077b5;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #00a0dc;
+    text-decoration: none;
+}
+
+.social-icon .fa-github {
+    color: #333;
+}
+
+.social-icon .fa-github:hover {
+    color: #24292e;
+}
+
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .project-card {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent cards */
+    backdrop-filter: blur(10px); /* Adds a blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: rgba(255, 255, 255, 0.9); /* Brighter text color */
+}
+
+.project-card .card-title {
+    color: white; /* Bright white for titles */
+    font-weight: bold; /* Optional: Make titles bolder */
+}
+
+.project-card .card-text {
+    color: rgba(255, 255, 255, 0.9); /* Brighter text for descriptions */
+}
+
+.project-card .text-muted {
+    color: rgba(255, 255, 255, 0.7) !important; /* Brighter muted text (dates) */
+}
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .skill-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+    color: #495057;
+    font-weight: 500;
+    box-shadow: 3px 3px 6px #d1d9e6, -3px -3px 6px #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.skill-badge:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: linear-gradient(145deg, #007bff, #0056b3);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* Staggered animation for badges */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.skill-badge:nth-child(1) { animation-delay: 0.1s; }
+.skill-badge:nth-child(2) { animation-delay: 0.2s; }
+.skill-badge:nth-child(3) { animation-delay: 0.3s; }
+.skill-badge:nth-child(4) { animation-delay: 0.4s; }
+.skill-badge:nth-child(5) { animation-delay: 0.5s; }
+.skill-badge:nth-child(6) { animation-delay: 0.6s; }
+
+        .timeline-item {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Adds a blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.9); /* Brighter text color */
+}
+
+.timeline-item h5 {
+    color: white; /* Bright white for titles */
+    font-weight: bold; /* Optional: Make titles bolder */
+}
+
+.timeline-item .text-muted {
+    color: rgba(255, 255, 255, 0.7) !important; /* Brighter muted text (dates) */
+}
+
+.timeline-item::before {
+    background-color: var(--primary-color); /* Keep the timeline dot color */
+    border: 2px solid white; /* Add a border to the dot for better visibility */
+}
+        .certification-card {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent cards */
+    backdrop-filter: blur(10px); /* Adds a blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    transition: transform 0.3s;
+    color: rgba(255, 255, 255, 0.9); /* Brighter text color */
+}
+
+.certification-card h5 {
+    color: white; /* Bright white for titles */
+    font-weight: bold; /* Optional: Make titles bolder */
+}
+
+.certification-card .text-muted {
+    color: rgba(255, 255, 255, 0.7) !important; /* Brighter muted text (dates) */
+}
+
+.certification-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+        .certification-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .language-progress {
+            height: 10px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-progress .progress-bar {
+            background-color: var(--primary-color);
+        }
+
+        footer {
+            background-color: rgba(44, 62, 80, 0.8);
+            color: white;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop>
+        <source src="Particles_47___45s___4k_res (1).mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Dark Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Rupayan Saha</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <img src="college photo 1.jpg" alt="Rupayan Saha" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #333;">
+                <h1 class="display-4 mb-3 fw-bold">Rupayan Saha</h1>
+                <p class="lead mb-4">Data Analyst</p>
+                <div class="contact-info">
+                    <p class="mb-2"><i class="fas fa-envelope me-2"></i>12b19rupayansaha@gmail.com</p>
+                    <p class="mb-2"><i class="fas fa-phone me-2"></i>+91 9051388305</p>
+                    <p class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Kolkata, West Bengal, India</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rest of the code remains the same -->
+        <!-- About Section -->
+        <section id="about" class="py-5">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <p class="lead">Aspiring Electronics & Communication Engineer with expertise in Data analytics and IoT solutions. Seeking challenging opportunities to apply technical skills in innovative projects while contributing to organizational growth.</p>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-5">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="row g-4">
+                    <!-- Project 1 -->
+                    <div class="col-md-4">
+                        <div class="card project-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Temperature Dependent Fan Speed Controller</h5>
+                                <small class="text-muted">Jul 2024</small>
+                                <p class="card-text mt-3">Developed an innovative temperature-based fan speed control system using IR sensors and PWM signals.</p>
+                                <div class="badges mt-3">
+                                    <span class="badge bg-secondary me-1">IR Temperature Sensing</span>
+                                    <span class="badge bg-secondary me-1">Triac</span>
+                                    <span class="badge bg-secondary">Optocoupler</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="col-md-4">
+                        <div class="card project-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Anti-Sleeping Alarm Mechanism For Drivers</h5>
+                                <small class="text-muted">Oct 2024</small>
+                                <p class="card-text mt-3">Designed an IR sensor-based alert system to prevent driver drowsiness with 10-second alarm activation.</p>
+                                <div class="badges mt-3">
+                                    <span class="badge bg-secondary me-1">IR Sensors</span>
+                                    <span class="badge bg-secondary">Arduino</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="col-md-4">
+                        <div class="card project-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Smart Attendance System Using RFID</h5>
+                                <small class="text-muted">Apr 2023</small>
+                                <p class="card-text mt-3">Implemented RFID-based automated attendance system with Arduino Uno integration.</p>
+                                <div class="badges mt-3">
+                                    <span class="badge bg-secondary me-1">RFID</span>
+                                    <span class="badge bg-secondary">Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <!-- Skills & Education -->
+    <section id="skills" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="skill-badge">Sql</span>
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">Java</span>
+                        <span class="skill-badge">PowerBi</span>
+                        <span class="skill-badge">Excel</span>
+                        <span class="skill-badge">MongoDB</span>
+                        </div>
+                        <h2 class="section-title mt-5">Languages</h2>
+                        <div class="language-skills">
+                            <div class="mb-3">
+                                <p class="mb-1">Bengali <span class="float-end">Native</span></p>
+                                <div class="language-progress">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <p class="mb-1">English <span class="float-end">Fluent</span></p>
+                                <div class="language-progress">
+                                    <div class="progress-bar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="mb-1">Hindi <span class="float-end">Fluent</span></p>
+                                <div class="language-progress">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h2 class="section-title">Education</h2>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h5>University of Engineering and Management, Kolkata</h5>
+                                <p class="text-muted">B.Tech in Electronics and Communication<br>
+                                CGPA: 9.32 | 2021-2025</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h5>Ram Mohan Mission High School</h5>
+                                <p class="text-muted">Higher Secondary Education<br>
+                                2018-2021</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications & Awards -->
+        <section id="certifications" class="py-5">
+            <div class="container">
+                <h2 class="section-title">Certifications & Awards</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                       
+                        <div class="card certification-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <i class="fab fa-aws fa-2x me-3 text-primary"></i>
+                                    <div>
+                                        <h5>AWS Cloud Practitioner</h5>
+                                        <p class="text-muted mb-0">Nov 2024</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card certification-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <i class="fab fa-ibm fa-2x me-3 text-primary"></i>
+                                    <div>
+                                        <h5>IBM Machine Learning</h5>
+                                        <p class="text-muted mb-0">Aug 2024</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card certification-card h-100">
+                            <div class="d-flex align-items-center">
+                                <i class="fab fa-ibm fa-2x me-3 text-primary"></i>
+                                <div>
+                                    <h5>IBM Data Analyst</h5>
+                                    <p class="text-muted mb-0">Jul 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card certification-card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-certificate fa-2x me-3 text-primary"></i>
+                                    <div>
+                                        <h5>Best Paper Award</h5>
+                                        <p class="text-muted mb-0">OPTRONIX'24</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </section>
+
+    <!-- LinkedIn Section -->
+    <section class="linkedin-section py-4">
+        <div class="container text-center">
+            <a href="https://www.linkedin.com/in/rupayan-saha-0917a1272/" 
+               target="_blank" 
+               class="linkedin-icon">
+                <i class="fab fa-linkedin fa-3x"></i>
+            </a>
+            <a href="https://github.com/Rup-02" 
+                       target="_blank" 
+                       class="social-icon">
+                        <i class="fab fa-github fa-3x"></i>
+                    </a>
+        </div>
+    </section>
+
+        
+
+        
+        <!-- Footer -->
+        <footer>
+            <div class="container text-center">
+                <p class="mb-0">&copy; 2023 Rupayan Saha. All rights reserved</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        </script>
+
+<script>
+    // ...existing code...
+    
+    // Add cursor style changes
+    document.addEventListener('DOMContentLoaded', function() {
+        const clickableElements = document.querySelectorAll('a, button, .card, .social-icon, .nav-link');
+        clickableElements.forEach(element => {
+            element.addEventListener('mouseover', function() {
+                this.style.cursor = 'pointer';
+            });
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+    const badges = document.querySelectorAll('.skill-badge');
+    badges.forEach((badge, index) => {
+        badge.style.animationDelay = `${index * 0.1}s`;
+    });
+});
+    
+    // ...existing code...
+</script>
+<script>
+// Animation on scroll
+window.addEventListener('scroll', function() {
+    const elements = document.querySelectorAll('.project-card, .certification-card');
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementBottom = element.getBoundingClientRect().bottom;
+        
+        if(elementTop < window.innerHeight && elementBottom > 0) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }
+    });
+});
+
+
+
+// Initialize animations
+window.onload = function() {
+    document.querySelectorAll('.project-card, .certification-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.6s ease-out';
+    });
+};
+</script>
+</body>
+</html>
+     
+
+     
+
